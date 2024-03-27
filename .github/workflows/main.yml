@@ -13,7 +13,6 @@ jobs:
               uses: elgohr/Publish-Docker-Github-Action@v5
               with:
                   registry: docker.pkg.github.com
-                  name: https://docker.pkg.github.com/Nikolay1717/nest-api-demo/test
+                  name: https://docker.pkg.github.com/Nikolay1717/nest-api-demo/nest-api-demo
                   username: ${{ secrets.DOCKER_USERNAME }}
                   password: ${{ secrets.DOCKER_PASSWORD }}
-                  tags: 'develop'
