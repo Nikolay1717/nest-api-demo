@@ -8,9 +8,9 @@ jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@master
             - name: Publish to registry
-              uses: elgohr/Publish-Docker-Github-Action@v5
+              uses: elgohr/Publish-Docker-Github-Action@master
               with:
                   registry: docker.pkg.github.com
                   name: docker.pkg.github.com/Nikolay1717/nest-api-demo/nest-api-demo
