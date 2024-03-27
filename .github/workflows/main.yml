@@ -15,17 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Publish to registry
-      run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+      run: docker build . --file Dockerfile --tag nest-api-demo --label "runnumber=${GITHUB_RUN_ID}"
       - name: Log in to registry
         run: echo "${{ secrets.DOCKER_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.Nikolay1717 }}/$IMAGE_NAME
+          IMAGE_ID=ghcr.io/${{ github.Nikolay1717 }}/nest-api-demo
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           [ "$VERSION" == "main" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker tag nest-api-demo $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
